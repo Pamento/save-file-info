@@ -30,22 +30,12 @@ var memoJson = (iFile) => {
 
 var saveConvertedFileName = (iFile) => {
 
-    fs.open(fileDir, 'r', (err, fd) => {
-      if (err) {
-        if (err.code === 'ENOENT') {
-          console.error('myfile does not exist');
-          let data = {};
-          fs.writeFile(fileDir, data, { flag: 'a+' }, (err) => {
-            if (err) throw err;
-            console.log("The file was crated!");
-          });
-        }
-
-        throw err;
-      }
-
-      memoJson(iFile,fd);
-    });
+  const data = {};
+  fs.writeFile(fileDir, data, {flag: 'a'}, (err) => {
+    if (err) throw err;
+    console.log('The file has been saved!');
+  });
+  memoJson(iFile);
 }
 
 module.exports = saveConvertedFileName;
